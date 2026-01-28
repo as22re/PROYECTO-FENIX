@@ -4,12 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Esta clase procesa listas de usuarios. Contiene 'code smells' intencionados.
+ * Clase que procesa listas de usuarios separándolos en administradores e invitados.
  */
 public class ProcesadorUsuarios {
     private static final int ROL_ADMIN = 1;
     private static final int ROL_INVITADO = 2;
-    // Método con 'code smells': largo, números mágicos, malos nombres.
+    /**
+     * Procesa una lista de usuarios con formato "nombre:rol" y devuelve un resumen.
+     *
+     * @param dataList Lista de usuarios, cada uno con "nombre:rol".
+     * @return Cadena con los nombres de administradores e invitados.
+     */
     public String procesarLista(List<String> dataList) {
         String admins = "";
         String invitados = "";
@@ -20,11 +25,9 @@ public class ProcesadorUsuarios {
                 String nombre = parts[0];
                 int rol = Integer.parseInt(parts[1]);
 
-                // Número Mágico: 1 es Admin
                 if (rol == ROL_ADMIN) {
                     admins += procesarAdmin(nombre);
                 }
-                // Número Mágico: 2 es Invitado
                 else if (rol == ROL_INVITADO) {
                     invitados += procesarInvitado(nombre);
                 }
